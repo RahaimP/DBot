@@ -1,0 +1,17 @@
+import lightbulb
+import hikari
+
+plugin = lightbulb.Plugin('Example')
+
+@plugin.listener(hikari.GuildMessageCreateEvent)
+async def print_message(event):
+    print(event.content)
+
+@plugin.command
+@lightbulb.command('ping', 'pong')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ping(ctx):
+    await ctx.respond('pong')
+
+def load(bot):
+    bot.add_plugin(plugin)
